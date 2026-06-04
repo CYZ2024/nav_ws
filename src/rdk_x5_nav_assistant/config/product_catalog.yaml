@@ -1,0 +1,64 @@
+products:
+  - id: fanta_orange
+    name: 芬达橙味汽水
+    aliases: [芬达, 橙味汽水, fanta]
+    apriltag_id: 20
+    shelf_id: shelf_a
+    detection_classes: [dummy_product_08]
+    grasp_hint: 货架中层，橙色瓶身
+
+  - id: sprite
+    name: 雪碧
+    aliases: [雪碧, sprite]
+    apriltag_id: 21
+    shelf_id: shelf_a
+    detection_classes: [dummy_product_08]
+    grasp_hint: 货架中层，绿色瓶身
+
+  - id: coke_classic
+    name: 可口可乐
+    aliases: [可乐, 可口可乐, coke]
+    apriltag_id: 22
+    shelf_id: shelf_a
+    detection_classes: [dummy_product_08]
+    grasp_hint: 货架中层，红色瓶身
+
+  - id: coke_zero
+    name: 可口可乐零度
+    aliases: [零度可乐, 零度, coke zero]
+    apriltag_id: 23
+    shelf_id: shelf_a
+    detection_classes: [dummy_product_08]
+    grasp_hint: 货架中层，黑色瓶身
+
+  - id: milk
+    name: 纯牛奶
+    aliases: [牛奶, milk]
+    apriltag_id: 24
+    shelf_id: shelf_a
+    detection_classes: [dummy_product_08]
+    grasp_hint: 货架上层，白色盒装
+
+  - id: toothpaste
+    name: 美白牙膏
+    aliases: [牙膏, toothpaste]
+    apriltag_id: 30
+    shelf_id: shelf_b
+    detection_classes: [dummy_product_03]
+    grasp_hint: 货架中层，管状
+
+  - id: biscuit
+    name: 夹心饼干
+    aliases: [饼干, biscuit]
+    apriltag_id: 31
+    shelf_id: shelf_b
+    detection_classes: [dummy_product_04]
+    grasp_hint: 货架下层，袋装
+
+  - id: apple
+    name: 红富士苹果
+    aliases: [苹果, apple]
+    apriltag_id: 40
+    shelf_id: shelf_c
+    detection_classes: [dummy_product_07]
+    grasp_hint: 货架上层，红色圆形

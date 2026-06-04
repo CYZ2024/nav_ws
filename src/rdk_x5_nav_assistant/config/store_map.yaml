@@ -1,0 +1,95 @@
+frames:
+  map: map
+  base_link: base_link
+  camera: camera_link
+
+waypoints:
+  - id: entrance
+    name: 入口
+    pose: [0.0, 0.0, 0.0]
+    trigger_radius_m: 0.7
+    voice_hint: 请从入口沿主通道缓慢前进
+  - id: aisle_center
+    name: 主通道
+    pose: [1.2, 0.0, 0.0]
+    trigger_radius_m: 0.7
+    prepare_radius_m: 1.2
+    voice_hint: 请继续沿主通道前进
+    turn_hint: 到达主通道中段，请根据提示靠近目标货架
+  - id: shelf_a_front
+    name: 饮料货架前
+    pose: [2.4, -0.8, 0.0]
+    trigger_radius_m: 0.8
+    prepare_radius_m: 1.2
+    voice_hint: 请沿主通道前进，准备向左靠近饮料货架
+    prepare_text: 前方接近饮料货架，请准备向左靠近
+    arrival_text: 已到达饮料货架附近，请面向货架
+  - id: shelf_b_front
+    name: 日化/零食货架前
+    pose: [2.4, 0.8, 0.0]
+    trigger_radius_m: 0.8
+    prepare_radius_m: 1.2
+    voice_hint: 请沿主通道前进，准备向右靠近日化和零食货架
+    prepare_text: 前方接近日化和零食货架，请准备向右靠近
+    arrival_text: 已到达日化和零食货架附近，请面向货架
+  - id: shelf_c_front
+    name: 水果货架前
+    pose: [3.8, 0.0, 0.0]
+    trigger_radius_m: 0.8
+    prepare_radius_m: 1.2
+    voice_hint: 请继续沿主通道前进，靠近正前方水果货架
+    prepare_text: 前方接近水果货架，请减速并面向货架
+    arrival_text: 已到达水果货架附近，请面向货架
+
+route_graph:
+  entry_waypoint: entrance
+  localization: YDLIDAR X3 (vp100_ros2) + Cartographer 2D SLAM 为主定位源
+  command_velocity: false
+  notes: >
+    导航板使用纯激光雷达定位，无摄像头、无底盘。
+    Cartographer 发布 map -> base_footprint TF，Nav2 做路径规划。
+    AprilTag 在 AI 板做货架区域校验和 SKU 校验。
+
+shelves:
+  - id: shelf_a
+    name: 饮料货架
+    waypoint_id: shelf_a_front
+    pose: [2.4, -0.8, 0.0]
+    apriltag_ids: [11]
+  - id: shelf_b
+    name: 日化与零食货架
+    waypoint_id: shelf_b_front
+    pose: [2.4, 0.8, 0.0]
+    apriltag_ids: [12]
+  - id: shelf_c
+    name: 水果货架
+    waypoint_id: shelf_c_front
+    pose: [3.8, 0.0, 0.0]
+    apriltag_ids: [13]
+
+apriltags:
+  - id: 10
+    name: 入口定位标
+    shelf_id: entrance
+    pose: [0.0, 0.0, 0.0]
+    assistant_pose: [0.0, 0.0, 0.0]
+  - id: 11
+    name: 饮料货架定位标
+    shelf_id: shelf_a
+    pose: [2.4, -0.8, 0.0]
+    assistant_pose: [2.4, -0.8, 0.0]
+  - id: 12
+    name: 日化与零食货架定位标
+    shelf_id: shelf_b
+    pose: [2.4, 0.8, 0.0]
+    assistant_pose: [2.4, 0.8, 0.0]
+  - id: 13
+    name: 水果货架定位标
+    shelf_id: shelf_c
+    pose: [3.8, 0.0, 0.0]
+    assistant_pose: [3.8, 0.0, 0.0]
+
+no_go_zones:
+  - id: checkout_counter
+    name: 收银台演示禁行区
+    polygon: [[4.4, -1.2], [5.0, -1.2], [5.0, 1.2], [4.4, 1.2]]

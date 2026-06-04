@@ -1,0 +1,9 @@
+depth:
+  min_depth_m: 0.2
+  max_depth_m: 4.0
+  sample_radius_px: 6
+
+grasp_verification:
+  depth_gap_threshold_m: 0.18
+  product_stale_s: 1.5
+  hand_near_memory_s: 3.0

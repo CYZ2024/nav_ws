@@ -1,0 +1,40 @@
+routes:
+  - id: find_fanta_orange
+    product_id: fanta_orange
+    waypoints: [entrance, aisle_center, shelf_a_front]
+    voice_hint: 请沿主通道前进，到达前方后向左侧饮料货架靠近
+
+  - id: find_sprite
+    product_id: sprite
+    waypoints: [entrance, aisle_center, shelf_a_front]
+    voice_hint: 请沿主通道前进，到达前方后向左侧饮料货架靠近
+
+  - id: find_coke_classic
+    product_id: coke_classic
+    waypoints: [entrance, aisle_center, shelf_a_front]
+    voice_hint: 请沿主通道前进，到达前方后向左侧饮料货架靠近
+
+  - id: find_coke_zero
+    product_id: coke_zero
+    waypoints: [entrance, aisle_center, shelf_a_front]
+    voice_hint: 请沿主通道前进，到达前方后向左侧饮料货架靠近
+
+  - id: find_milk
+    product_id: milk
+    waypoints: [entrance, aisle_center, shelf_a_front]
+    voice_hint: 请沿主通道前进，到达前方后向左侧饮料货架靠近
+
+  - id: find_toothpaste
+    product_id: toothpaste
+    waypoints: [entrance, aisle_center, shelf_b_front]
+    voice_hint: 请沿主通道前进，到达前方后向右侧日化货架靠近
+
+  - id: find_biscuit
+    product_id: biscuit
+    waypoints: [entrance, aisle_center, shelf_b_front]
+    voice_hint: 请沿主通道前进，到达前方后向右侧零食货架靠近
+
+  - id: find_apple
+    product_id: apple
+    waypoints: [entrance, aisle_center, shelf_c_front]
+    voice_hint: 请继续沿主通道前进，靠近正前方水果货架
