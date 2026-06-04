@@ -19,6 +19,7 @@ setup(
         (f"share/{package_name}/config/audio/hrsc", glob(os.path.join("config", "audio", "hrsc", "*.json"))),
         (f"share/{package_name}/launch", glob(os.path.join("launch", "*.launch.py"))),
         (f"share/{package_name}/maps", glob(os.path.join("maps", "*"))),
+        (f"share/{package_name}/rviz", glob(os.path.join("rviz", "*.rviz"))),
         (f"share/{package_name}/scripts", glob(os.path.join("scripts", "*.sh"))),
     ],
     install_requires=["setuptools"],
@@ -32,6 +33,7 @@ setup(
         "console_scripts": [
             "localization_bridge = rdk_x5_nav_assistant.localization_bridge:main",
             "nav_goal_bridge = rdk_x5_nav_assistant.nav_goal_bridge:main",
+            "scan_sector_filter = rdk_x5_nav_assistant.scan_sector_filter:main",
         ],
     },
 )

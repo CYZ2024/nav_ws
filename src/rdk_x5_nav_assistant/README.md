@@ -98,6 +98,42 @@ source install/setup.bash
 
 ## 使用方式
 
+### 工位建图 Smoke 实验（带后方过滤 + RViz）
+
+雷达放在购物车前方、人站在后方推车时，先过滤正后方扇区再建图：
+
+```bash
+cd /home/sunrise/Project/nav_ws
+source /opt/tros/humble/setup.bash
+source install/setup.bash
+
+ros2 launch rdk_x5_nav_assistant smoke_mapping.launch.py \
+  filter_center_deg:=180 \
+  filter_width_deg:=90 \
+  laser_x:=0.25 \
+  laser_z:=0.25
+```
+
+- `filter_center_deg`：过滤方向，单位度，按 `laser_link` 坐标系计算；`0` 是前方，`180` 或 `-180` 是后方
+- `filter_width_deg`：过滤扇区宽度；建议先从 `90` 开始，如果仍看到人腿再试 `120`
+- `/scan_filtered`：给 Cartographer 建图使用的过滤后扫描
+- `/scan_blocked`：RViz 中红色显示，被过滤掉的扫描点
+
+运行中可直接调整过滤参数：
+
+```bash
+ros2 param set /scan_sector_filter filter_center_deg 180
+ros2 param set /scan_sector_filter filter_width_deg 120
+```
+
+建图完成后保存 Cartographer 地图：
+
+```bash
+mkdir -p /home/sunrise/Project/nav_ws/maps
+ros2 service call /write_state cartographer_ros_msgs/srv/WriteState \
+  "filename: '/home/sunrise/Project/nav_ws/maps/workbench_smoke.pbstream'"
+```
+
 ### 方式一：一键启动（推荐）
 
 ```bash
