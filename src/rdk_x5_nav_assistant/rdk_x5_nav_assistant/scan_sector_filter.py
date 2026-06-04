@@ -7,6 +7,7 @@ import math
 from typing import List, Optional
 
 import rclpy
+from rcl_interfaces.msg import ParameterDescriptor
 from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 
@@ -46,8 +47,9 @@ class ScanSectorFilter(Node):
         self.declare_parameter("filtered_scan_topic", "/scan_filtered")
         self.declare_parameter("blocked_scan_topic", "/scan_blocked")
         self.declare_parameter("filter_enabled", True)
-        self.declare_parameter("filter_center_deg", 180.0)
-        self.declare_parameter("filter_width_deg", 90.0)
+        numeric_parameter = ParameterDescriptor(dynamic_typing=True)
+        self.declare_parameter("filter_center_deg", 180.0, numeric_parameter)
+        self.declare_parameter("filter_width_deg", 90.0, numeric_parameter)
         self.declare_parameter("invert_filter", False)
         self.declare_parameter("replacement", "nan")
 
