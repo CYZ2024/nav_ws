@@ -9,6 +9,7 @@ from typing import List, Optional
 import rclpy
 from rcl_interfaces.msg import ParameterDescriptor
 from rclpy.node import Node
+from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import LaserScan
 
 
@@ -48,10 +49,11 @@ class ScanSectorFilter(Node):
         self.declare_parameter("blocked_scan_topic", "/scan_blocked")
         self.declare_parameter("filter_enabled", True)
         numeric_parameter = ParameterDescriptor(dynamic_typing=True)
+        flexible_parameter = ParameterDescriptor(dynamic_typing=True)
         self.declare_parameter("filter_center_deg", 180.0, numeric_parameter)
         self.declare_parameter("filter_width_deg", 90.0, numeric_parameter)
         self.declare_parameter("invert_filter", False)
-        self.declare_parameter("replacement", "nan")
+        self.declare_parameter("replacement", "nan", flexible_parameter)
 
         self._filtered_pub = self.create_publisher(
             LaserScan,
@@ -67,7 +69,7 @@ class ScanSectorFilter(Node):
             LaserScan,
             str(self.get_parameter("input_scan_topic").value),
             self._on_scan,
-            10,
+            qos_profile_sensor_data,
         )
 
         self._last_log_time = 0.0
