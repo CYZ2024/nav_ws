@@ -63,11 +63,21 @@ def generate_launch_description() -> LaunchDescription:
         ],
     )
 
-    map_to_base_tf = Node(
-        package="tf2_ros",
-        executable="static_transform_publisher",
-        name="map_to_base_test_tf",
-        arguments=[robot_x, robot_y, robot_z, "0", "0", robot_yaw, "map", "base_footprint"],
+    initial_pose_tf = Node(
+        package="rdk_x5_nav_assistant",
+        executable="initial_pose_tf",
+        name="initial_pose_tf",
+        output="screen",
+        parameters=[
+            {
+                "map_frame": "map",
+                "robot_frame": "base_footprint",
+                "initial_pose_topic": "/initialpose",
+                "x": robot_x,
+                "y": robot_y,
+                "yaw": robot_yaw,
+            }
+        ],
         condition=IfCondition(use_tf),
     )
 
@@ -120,7 +130,7 @@ def generate_launch_description() -> LaunchDescription:
         DeclareLaunchArgument("laser_z", default_value="0.25"),
         vp100_node,
         scan_filter,
-        map_to_base_tf,
+        initial_pose_tf,
         base_tf,
         laser_tf,
         nav2_launch,

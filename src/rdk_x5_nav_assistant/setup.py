@@ -32,6 +32,7 @@ setup(
     entry_points={
         "console_scripts": [
             "localization_bridge = rdk_x5_nav_assistant.localization_bridge:main",
+            "initial_pose_tf = rdk_x5_nav_assistant.initial_pose_tf:main",
             "nav_goal_bridge = rdk_x5_nav_assistant.nav_goal_bridge:main",
             "scan_sector_filter = rdk_x5_nav_assistant.scan_sector_filter:main",
         ],
